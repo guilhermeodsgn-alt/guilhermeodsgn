@@ -1,34 +1,25 @@
 /* ============================================================
-   Social Stream Ninja — Dock Style
-   Fonte: Poppins | container preto opaco + borda branca assimétrica
-   username sem quebra | mensagem à direita
-   cards em destaque com BG vermelho (#FF0000)
+   Social Stream Ninja — Dock Style (cards)
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 :root {
-  --ssn-bg: #000000;            /* fundo do container (opaco) */
-  --ssn-card-bg: #ffffff;       /* fundo dos cards */
-  --ssn-feature-bg: #FF0000;    /* fundo dos cards em destaque */
-  --ssn-feature-text: #ffffff;  /* texto dos cards em destaque */
-  --ssn-card-radius: 16px;
-  --ssn-card-gap: 14px;
-  --ssn-card-pad: 16px 20px;
+  --ssn-card-bg: #ffffff;
+  --ssn-feature-bg: #FF0000;
+  --ssn-feature-text: #ffffff;
+  --ssn-card-radius: 10px;
+  --ssn-card-border: #646464;
   --ssn-name-color: #000000;
   --ssn-text-color: #1a1a1a;
-  --ssn-name-size: 15px;
-  --ssn-text-size: 15px;
-  --ssn-name-width: 120px;      /* largura da coluna do username */
-  --ssn-font: 'Poppins', -apple-system, Arial, sans-serif;
+  --ssn-name-width: 130px;
+  --ssn-font: 'Poppins', sans-serif;
 }
 
-/* fundo geral do dock — 100% opaco + borda branca assimétrica */
-body {
-  background: var(--ssn-bg) !important;
+body,
+body.OBS {
+  background-color: #000000 !important;
   opacity: 1 !important;
-  padding: 18px !important;
-  margin: 0 !important;
   font-family: var(--ssn-font) !important;
   border-style: solid !important;
   border-color: #ffffff !important;
@@ -40,87 +31,105 @@ body {
   box-sizing: border-box !important;
 }
 
-/* esconde avatares/imagens de perfil para o visual limpo */
-.improve img.thumbnail,
-.message img.avatar,
-.avatar {
+#output {
+  padding: 14px !important;
+}
+
+.highlight-chat > img.icon.hl-profile-pic,
+.highlight-chat img.hl-profile-pic,
+.highlight-chat > img.icon.hl-source-type,
+.highlight-chat img.hl-source-type,
+.time-arrived {
   display: none !important;
 }
 
-/* cada mensagem = card branco */
-.message,
-.improve {
-  background: var(--ssn-card-bg) !important;
+.highlight-chat {
+  background-color: var(--ssn-card-bg) !important;
+  background-image: none !important;
   border-radius: var(--ssn-card-radius) !important;
-  padding: var(--ssn-card-pad) !important;
-  margin-bottom: var(--ssn-card-gap) !important;
+  border-style: solid !important;
+  border-color: var(--ssn-card-border) !important;
+  border-top-width: 0 !important;
+  border-right-width: 0 !important;
+  border-left-width: 4px !important;
+  border-bottom-width: 4px !important;
   box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
+  margin: 0 0 12px 0 !important;
+  padding: 14px 18px !important;
   display: flex !important;
+  flex-wrap: nowrap !important;
   align-items: center !important;
-  gap: 18px !important;
-  border: none !important;
-  font-family: var(--ssn-font) !important;
+  gap: 16px !important;
+  width: auto !important;
+  min-height: 0 !important;
 }
 
-/* username — coluna fixa à esquerda, negrito, SEM quebra de linha */
-.name,
-.author,
-.improve .name {
+.highlight-chat.odd,
+.highlight-chat.compactmode,
+.highlight-chat.odd.compactmode {
+  background-color: var(--ssn-card-bg) !important;
+}
+.highlight-chat:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
+}
+
+.highlight-chat .hl-name {
   flex: 0 0 var(--ssn-name-width) !important;
   width: var(--ssn-name-width) !important;
+  min-width: var(--ssn-name-width) !important;
+  max-width: var(--ssn-name-width) !important;
+  margin: 0 !important;
   color: var(--ssn-name-color) !important;
   font-family: var(--ssn-font) !important;
   font-weight: 700 !important;
-  font-size: var(--ssn-name-size) !important;
+  font-size: 14px !important;
   line-height: 1.3 !important;
-  text-align: left !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+  display: block !important;
+  text-shadow: none !important;
 }
 
-/* mensagem — ocupa o restante à direita */
-.message .text,
-.text,
-.mtext,
-.improve .text {
+.highlight-chat .hl-message,
+.highlight-chat .hl-content {
   flex: 1 1 auto !important;
+  margin: 0 !important;
   color: var(--ssn-text-color) !important;
   font-family: var(--ssn-font) !important;
-  font-size: var(--ssn-text-size) !important;
+  font-size: 14px !important;
   line-height: 1.4 !important;
-  text-align: left !important;
+  text-shadow: none !important;
+  width: auto !important;
 }
 
-/* ============================================================
-   CARDS EM DESTAQUE — fundo vermelho (#FF0000)
-   Cobre as classes usadas para mensagens fixadas/selecionadas/
-   em destaque. Confirme qual aparece ao fixar (CTRL/ALT+clique).
-   ============================================================ */
-.message.pinned,
-.message.highlight,
-.message.featured,
-.message.selected,
-.pinned,
-.highlight,
-.featured {
-  background: var(--ssn-feature-bg) !important;
+.highlight-chat.pressed,
+.highlight-chat.last-message,
+.highlight-chat.pinned,
+.highlight-chat.queued,
+#pinned .highlight-chat {
+  background-color: var(--ssn-feature-bg) !important;
 }
-
-.message.pinned .name,   .message.pinned .text,
-.message.highlight .name,.message.highlight .text,
-.message.featured .name, .message.featured .text,
-.message.selected .name, .message.selected .text,
-.pinned .name,  .pinned .text,
-.highlight .name,.highlight .text,
-.featured .name,.featured .text {
+.highlight-chat.pressed .hl-name,
+.highlight-chat.last-message .hl-name,
+.highlight-chat.pinned .hl-name,
+.highlight-chat.queued .hl-name,
+#pinned .highlight-chat .hl-name,
+.highlight-chat.pressed .hl-message,
+.highlight-chat.pressed .hl-content,
+.highlight-chat.last-message .hl-message,
+.highlight-chat.last-message .hl-content,
+.highlight-chat.pinned .hl-message,
+.highlight-chat.pinned .hl-content,
+.highlight-chat.queued .hl-message,
+.highlight-chat.queued .hl-content,
+#pinned .highlight-chat .hl-message,
+#pinned .highlight-chat .hl-content {
   color: var(--ssn-feature-text) !important;
 }
 
-/* remove badges/ícones de plataforma se quiser 100% limpo
-   (comente esta regra se quiser manter os ícones youtube/twitch) */
-.subName,
-.donation,
-.platform-icon {
-  display: none !important;
+#pinned {
+  background-color: #000000 !important;
+  border-bottom: none !important;
+  padding: 0 !important;
 }
