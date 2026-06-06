@@ -12,7 +12,9 @@
   --ssn-card-border: #646464;
   --ssn-name-color: #000000;
   --ssn-text-color: #1a1a1a;
-  --ssn-name-width: 130px;
+  --ssn-name-width: 150px;
+  --ssn-font-size: 15px;
+  --ssn-icon-size: 15px;
   --ssn-font: 'Poppins', sans-serif;
 }
 
@@ -37,10 +39,23 @@ body.OBS {
 
 .highlight-chat > img.icon.hl-profile-pic,
 .highlight-chat img.hl-profile-pic,
-.highlight-chat > img.icon.hl-source-type,
-.highlight-chat img.hl-source-type,
 .time-arrived {
   display: none !important;
+}
+
+.highlight-chat > img.icon.hl-source-type,
+.highlight-chat img.hl-source-type {
+  display: inline-block !important;
+  width: var(--ssn-icon-size) !important;
+  height: var(--ssn-icon-size) !important;
+  max-width: var(--ssn-icon-size) !important;
+  max-height: var(--ssn-icon-size) !important;
+  min-width: var(--ssn-icon-size) !important;
+  margin: 0 6px 0 0 !important;
+  flex: 0 0 var(--ssn-icon-size) !important;
+  order: -1 !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
 }
 
 .highlight-chat {
@@ -59,7 +74,7 @@ body.OBS {
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  gap: 16px !important;
+  gap: 14px !important;
   width: auto !important;
   min-height: 0 !important;
 }
@@ -78,11 +93,11 @@ body.OBS {
   width: var(--ssn-name-width) !important;
   min-width: var(--ssn-name-width) !important;
   max-width: var(--ssn-name-width) !important;
-  margin: 0 !important;
+  margin: 0 6px 0 0 !important;
   color: var(--ssn-name-color) !important;
   font-family: var(--ssn-font) !important;
   font-weight: 700 !important;
-  font-size: 14px !important;
+  font-size: var(--ssn-font-size) !important;
   line-height: 1.3 !important;
   white-space: nowrap !important;
   overflow: hidden !important;
@@ -97,7 +112,7 @@ body.OBS {
   margin: 0 !important;
   color: var(--ssn-text-color) !important;
   font-family: var(--ssn-font) !important;
-  font-size: 14px !important;
+  font-size: var(--ssn-font-size) !important;
   line-height: 1.4 !important;
   text-shadow: none !important;
   width: auto !important;
