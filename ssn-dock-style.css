@@ -1,6 +1,6 @@
 /* ============================================================
    Social Stream Ninja — Dock Style (PIXEL) — SEM vermelho
-   Moldura + fundo fixos ao quadro do OBS | cards em fluxo normal
+   Box preso ao quadro do OBS | fundo só no box | fade + borda na base
    ============================================================ */
 
 @font-face {
@@ -34,59 +34,40 @@ body.OBS {
 }
 body, body.OBS {
   background-color: transparent !important;
+  height: 100vh !important;
   min-height: 100vh !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
 }
 
-body::before {
-  content: "" !important;
+#output {
+  box-sizing: border-box !important;
   position: fixed !important;
   top: 6px !important;
   left: 6px !important;
   right: 6px !important;
   bottom: 6px !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  padding: 14px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  background-color: #000000 !important;
   border: 1px solid #ffffff !important;
   border-left-width: 4px !important;
   border-bottom-width: 4px !important;
   border-radius: 7px !important;
-  pointer-events: none !important;
-  z-index: 9999 !important;
-}
-
-body::after {
-  content: "" !important;
-  position: fixed !important;
-  top: 6px !important;
-  left: 6px !important;
-  right: 6px !important;
-  bottom: 6px !important;
-  background-color: #000000 !important;
-  border-radius: 7px !important;
-  pointer-events: none !important;
-  z-index: -1 !important;
-}
-
-#output {
-  box-sizing: border-box !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  min-height: 100vh !important;
-  padding: 20px !important;
-  margin: 0 !important;
-  overflow: hidden !important;
-  background-color: transparent !important;
-  -webkit-mask-image: linear-gradient(to top, transparent 0, #000 18vh) !important;
-  mask-image: linear-gradient(to top, transparent 0, #000 18vh) !important;
-  -webkit-mask-repeat: no-repeat !important;
-  mask-repeat: no-repeat !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
+  mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
 }
 .output-container {
-  -webkit-mask-image: linear-gradient(to top, transparent 0, #000 18vh) !important;
-  mask-image: linear-gradient(to top, transparent 0, #000 18vh) !important;
-  -webkit-mask-repeat: no-repeat !important;
-  mask-repeat: no-repeat !important;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
+  mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
 }
 
 .highlight-chat > img.icon.hl-profile-pic,
@@ -128,14 +109,14 @@ body::after {
   line-height: 1.5 !important;
   overflow-wrap: anywhere !important;
   word-break: normal !important;
-  animation: ssn-rise 0.4s ease-out !important;
+  animation: ssn-rise 0.45s ease-out both !important;
   transition: none !important;
 }
 
 @keyframes ssn-rise {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
