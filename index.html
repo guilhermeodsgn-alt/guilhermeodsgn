@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação OBS - A Live Vai Começar</title>
+    <style>
+        /* Importação da sua fonte Pixel via Raw GitHub */
+        @font-face {
+            font-family: 'PixelOperator';
+            src: url('https://raw.githubusercontent.com/guilhermeodsgn-alt/guilhermeodsgn/8065deb0ddaf6155aac009d2b7e08d5c0837a960/PixelOperatorHB.ttf') format('truetype');
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            /* Fundo transparente essencial para o OBS */
+            background-color: transparent; 
+            color: #ffffff; /* Cor do texto */
+            font-family: 'PixelOperator', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .text-container {
+            font-size: 90px; /* Ajuste o tamanho conforme a necessidade no OBS */
+            text-align: center;
+            line-height: 1.1;
+            /* Sombra para dar destaque caso o fundo da live seja claro */
+            text-shadow: 4px 4px 0px #000000; 
+            position: relative;
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            /* Transição suave para o efeito de "subir" */
+            transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s ease-in;
+        }
+
+        /* Classe que será ativada via JavaScript para fazer o texto subir e sumir */
+        .text-container.fly-up {
+            transform: translateY(-80px) scale(0.95);
+            opacity: 0;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 70px; /* Altura do cursor piscante */
+            background-color: #ffffff;
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+            margin-left: 8px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="text-container" class="text-container">
+        <span id="text"></span><span class="cursor"></span>
+    </div>
+
+    <script>
+        const textElement = document.getElementById('text');
+        const container = document.getElementById('text-container');
+        
+        // Frase que será digitada (\n representa a quebra de linha)
+        const textToType = "A LIVE JÁ\nVAI COMEÇAR";
+        
+        // Configurações de tempo (em milissegundos)
+        const typingSpeed = 120; // Velocidade de digitação de cada letra
+        const waitTime = 4000;   // Tempo que a frase fica na tela após terminar de digitar
+        const flyUpTime = 1000;  // Tempo que dura a animação de subir (deve casar com a transição do CSS)
+
+        function startLoop() {
+            container.classList.remove('fly-up');
+            textElement.innerHTML = '';
+            let i = 0;
+
+            // Função recursiva para digitar letra por letra
+            function type() {
+                if (i < textToType.length) {
+                    if (textToType.charAt(i) === '\n') {
+                        textElement.innerHTML += '<br>';
+                    } else {
+                        textElement.innerHTML += textToType.charAt(i);
+                    }
+                    i++;
+                    setTimeout(type, typingSpeed);
+                } else {
+                    // Quando terminar de digitar, aguarda e chama a animação de saída
+                    setTimeout(animateOut, waitTime);
+                }
+            }
+
+            type();
+        }
+
+        function animateOut() {
+            // Adiciona a classe que faz o texto subir e sumir
+            container.classList.add('fly-up');
+            
+            // Aguarda a animação terminar + um pequeno respiro, e recomeça
+            setTimeout(startLoop, flyUpTime + 500); 
+        }
+
+        // Inicia o ciclo assim que a página carrega
+        window.onload = startLoop;
+    </script>
+
+</body>
+</html>
