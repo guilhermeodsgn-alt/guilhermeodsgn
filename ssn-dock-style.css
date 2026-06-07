@@ -1,6 +1,6 @@
 /* ============================================================
    Social Stream Ninja — Dock Style (PIXEL) — SEM vermelho
-   Nome + mensagem na MESMA linha | box arredondado 7px | fade na base
+   Texto corrido | box 7px | fade na base | sobe suave
    ============================================================ */
 
 @font-face {
@@ -49,11 +49,12 @@ body, body.OBS {
   padding: 14px !important;
   margin: 0 !important;
   overflow-x: hidden !important;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
+  mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
 }
-
 .output-container {
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 22%) !important;
-  mask-image: linear-gradient(to top, transparent 0%, #000 22%) !important;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
+  mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
 }
 
 .highlight-chat > img.icon.hl-profile-pic,
@@ -70,17 +71,17 @@ body, body.OBS {
   max-width: var(--ssn-icon-size) !important;
   max-height: var(--ssn-icon-size) !important;
   min-width: var(--ssn-icon-size) !important;
-  margin: 2px 8px 0 0 !important;
-  flex: 0 0 var(--ssn-icon-size) !important;
-  order: -1 !important;
+  margin: 0 7px -2px 0 !important;
   border-radius: 0 !important;
   object-fit: contain !important;
-  align-self: flex-start !important;
+  vertical-align: baseline !important;
+  float: none !important;
 }
 
 .highlight-chat {
   position: relative !important;
   box-sizing: border-box !important;
+  display: block !important;
   background-color: var(--ssn-card-bg) !important;
   background-image: none !important;
   border: none !important;
@@ -88,14 +89,26 @@ body, body.OBS {
   border-radius: 0 !important;
   box-shadow: 0 0 0 1px #1c1c1c !important;
   margin: 0 0 12px 0 !important;
-  padding: 11px 13px !important;
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  align-items: flex-start !important;
-  gap: 9px !important;
+  padding: 11px 14px !important;
   width: 100% !important;
   max-width: 100% !important;
   min-height: 0 !important;
+  line-height: 1.5 !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  animation: ssn-rise 0.45s ease-out both !important;
+  transition: none !important;
+}
+
+@keyframes ssn-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .highlight-chat::after {
@@ -119,39 +132,45 @@ body, body.OBS {
 
 .highlight-chat .hl-name {
   display: inline !important;
-  flex: 0 1 auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
   width: auto !important;
   min-width: 0 !important;
   max-width: none !important;
-  margin: 0 6px 0 0 !important;
+  float: none !important;
   color: var(--ssn-name-color) !important;
   font-family: var(--ssn-name-font) !important;
   font-weight: 400 !important;
   font-size: 18px !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
-  line-height: 1.45 !important;
   white-space: normal !important;
   overflow: visible !important;
   text-shadow: none !important;
+  vertical-align: baseline !important;
 }
 
 .highlight-chat .hl-name::after {
-  content: " -" !important;
+  content: " \2013 " !important;
+  white-space: nowrap !important;
+  font-family: var(--ssn-msg-font) !important;
+  color: var(--ssn-text-color) !important;
 }
 
 .highlight-chat .hl-message,
 .highlight-chat .hl-content {
   display: inline !important;
-  flex: 1 1 auto !important;
-  min-width: 0 !important;
   margin: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  float: none !important;
   color: var(--ssn-text-color) !important;
   font-family: var(--ssn-msg-font) !important;
   font-weight: 400 !important;
   font-size: 15px !important;
-  line-height: 1.45 !important;
   text-shadow: none !important;
+  vertical-align: baseline !important;
   overflow-wrap: anywhere !important;
 }
 
@@ -176,6 +195,11 @@ body, body.OBS {
 .highlight-chat.pinned .hl-name,
 .highlight-chat.queued .hl-name,
 #pinned .highlight-chat .hl-name,
+.highlight-chat.pressed .hl-name::after,
+.highlight-chat.last-message .hl-name::after,
+.highlight-chat.pinned .hl-name::after,
+.highlight-chat.queued .hl-name::after,
+#pinned .highlight-chat .hl-name::after,
 .highlight-chat.pressed .hl-message,
 .highlight-chat.pressed .hl-content,
 .highlight-chat.last-message .hl-message,
