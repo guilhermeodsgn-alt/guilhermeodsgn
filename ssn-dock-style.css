@@ -1,9 +1,6 @@
 /* ============================================================
    Social Stream Ninja — Dock Style (PIXEL) — SEM vermelho
-   Nome: Pixel Operator HB | branco, caixa alta
-   Mensagem: Poppins | branca
-   Ícones: originais coloridos do Social Stream, pequenos
-   Featured: fundo BRANCO + escrita PRETA
+   Nome + mensagem na MESMA linha | box arredondado 7px | fade na base
    ============================================================ */
 
 @font-face {
@@ -23,7 +20,6 @@
   --ssn-text-color: #ffffff;
   --ssn-feature-bg: #ffffff;
   --ssn-feature-text: #000000;
-  --ssn-name-width: 170px;
   --ssn-name-font: 'Pixel Operator HB', monospace;
   --ssn-msg-font: 'Poppins', sans-serif;
   --ssn-icon-size: 16px;
@@ -40,8 +36,10 @@ body, body.OBS {
   border: 1px solid #ffffff !important;
   border-left-width: 4px !important;
   border-bottom-width: 4px !important;
+  border-radius: 7px !important;
   min-height: 100vh !important;
   margin: 0 !important;
+  overflow: hidden !important;
 }
 
 #output {
@@ -51,6 +49,11 @@ body, body.OBS {
   padding: 14px !important;
   margin: 0 !important;
   overflow-x: hidden !important;
+}
+
+.output-container {
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 22%) !important;
+  mask-image: linear-gradient(to top, transparent 0%, #000 22%) !important;
 }
 
 .highlight-chat > img.icon.hl-profile-pic,
@@ -67,11 +70,12 @@ body, body.OBS {
   max-width: var(--ssn-icon-size) !important;
   max-height: var(--ssn-icon-size) !important;
   min-width: var(--ssn-icon-size) !important;
-  margin: 0 8px 0 0 !important;
+  margin: 2px 8px 0 0 !important;
   flex: 0 0 var(--ssn-icon-size) !important;
   order: -1 !important;
   border-radius: 0 !important;
   object-fit: contain !important;
+  align-self: flex-start !important;
 }
 
 .highlight-chat {
@@ -83,12 +87,12 @@ body, body.OBS {
   border-left: 3px solid var(--ssn-accent) !important;
   border-radius: 0 !important;
   box-shadow: 0 0 0 1px #1c1c1c !important;
-  margin: 0 0 14px 0 !important;
-  padding: 12px 14px !important;
+  margin: 0 0 12px 0 !important;
+  padding: 11px 13px !important;
   display: flex !important;
   flex-wrap: nowrap !important;
-  align-items: center !important;
-  gap: 10px !important;
+  align-items: flex-start !important;
+  gap: 9px !important;
   width: 100% !important;
   max-width: 100% !important;
   min-height: 0 !important;
@@ -114,35 +118,39 @@ body, body.OBS {
 }
 
 .highlight-chat .hl-name {
-  flex: 0 0 var(--ssn-name-width) !important;
-  width: var(--ssn-name-width) !important;
-  min-width: var(--ssn-name-width) !important;
-  max-width: var(--ssn-name-width) !important;
-  margin: 0 8px 0 0 !important;
+  display: inline !important;
+  flex: 0 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 6px 0 0 !important;
   color: var(--ssn-name-color) !important;
   font-family: var(--ssn-name-font) !important;
   font-weight: 400 !important;
-  font-size: 17px !important;
+  font-size: 18px !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
-  line-height: 1.2 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  display: block !important;
+  line-height: 1.45 !important;
+  white-space: normal !important;
+  overflow: visible !important;
   text-shadow: none !important;
+}
+
+.highlight-chat .hl-name::after {
+  content: " -" !important;
 }
 
 .highlight-chat .hl-message,
 .highlight-chat .hl-content {
+  display: inline !important;
   flex: 1 1 auto !important;
   min-width: 0 !important;
   margin: 0 !important;
   color: var(--ssn-text-color) !important;
   font-family: var(--ssn-msg-font) !important;
   font-weight: 400 !important;
-  font-size: 14px !important;
-  line-height: 1.4 !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
   text-shadow: none !important;
   overflow-wrap: anywhere !important;
 }
