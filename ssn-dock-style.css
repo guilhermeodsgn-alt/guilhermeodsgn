@@ -1,6 +1,6 @@
 /* ============================================================
    Social Stream Ninja — Dock Style (PIXEL) — SEM vermelho
-   Texto corrido | box 7px | fade na base | sobe suave
+   Box preso ao quadro do OBS | fundo só no box | fade + borda na base
    ============================================================ */
 
 @font-face {
@@ -27,24 +27,30 @@
 
 html, body,
 body.OBS {
-  background-color: #000000 !important;
+  background-color: transparent !important;
   opacity: 1 !important;
   box-sizing: border-box !important;
   overflow-x: hidden !important;
 }
 body, body.OBS {
   background-color: transparent !important;
+  height: 100vh !important;
   min-height: 100vh !important;
   margin: 0 !important;
-  padding: 6px !important;
+  padding: 0 !important;
   overflow: hidden !important;
 }
 
 #output {
   box-sizing: border-box !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  min-height: calc(100vh - 12px) !important;
+  position: fixed !important;
+  top: 6px !important;
+  left: 6px !important;
+  right: 6px !important;
+  bottom: 6px !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
   padding: 14px !important;
   margin: 0 !important;
   overflow: hidden !important;
@@ -53,6 +59,9 @@ body, body.OBS {
   border-left-width: 4px !important;
   border-bottom-width: 4px !important;
   border-radius: 7px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
   -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
   mask-image: linear-gradient(to top, transparent 0%, #000 20%) !important;
 }
@@ -218,7 +227,7 @@ body, body.OBS {
 }
 
 #pinned {
-  background-color: #000000 !important;
+  background-color: transparent !important;
   border-bottom: none !important;
   padding: 0 !important;
 }
